@@ -2469,7 +2469,22 @@ class Main:
         else:
             ICON_OVERLAY = 7
         listitem.setProperty("fanart_image", romfanart)
-        listitem.setInfo( "video", { "Title": name, "Label": os.path.basename(cmd), "Plot" : romplot, "Studio" : romstudio, "Genre" : romgenre, "Premiered" : romrelease  , display_date_format : romrelease, "Writer" : romgamesys, "Trailer" : os.path.join(romtrailer), "Director" : os.path.join(romcustom), "overlay": ICON_OVERLAY } )
+
+        listitem.setInfo( "video", {
+		"Genre": romgenre,
+#		display_date_format: romrelease,
+		"Title": name,
+#		"originaltitle" : name,
+#               "sorttitle" : name,
+		"Label": os.path.basename(cmd),
+		"Plot" : romplot,
+#		"Studio" : romstudio,
+#		"Premiered" : romrelease,
+#		"Writer" : romgamesys,
+#		"Trailer" : os.path.join(romtrailer),
+#               "Director" : os.path.join(romcustom),
+		"overlay": ICON_OVERLAY
+	} )
 
         commands = []
         commands.append((__language__( 30512 ), "XBMC.RunPlugin(%s?%s/%s/%s)" % (self._path, self.launchers[launcherID]["category"], launcherID, SEARCH_COMMAND) , ))
