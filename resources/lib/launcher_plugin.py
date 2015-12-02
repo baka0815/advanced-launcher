@@ -2896,10 +2896,34 @@ def title_format(self,title):
        title = re.sub('\{.*?\}', '', title)
     new_title = title.rstrip()
     if ( self.settings[ "title_formating" ] ):
+	# GERMAN
+        if (title.startswith("Der ")): new_title = title.replace("Der ","",1)+", Der"
+        if (title.startswith("Die ")): new_title = title.replace("Die ","",1)+", Die"
+        if (title.startswith("Das ")): new_title = title.replace("Das ","",1)+", Das"
+        if (title.startswith("Ein ")): new_title = title.replace("Ein ","",1)+", Ein"
+        if (title.startswith("Eine ")): new_title = title.replace("Eine ","",1)+", Eine"
+	# FRENCH
+        if (title.startswith("Un ")): new_title = title.replace("Un ","",1)+", Un"
+        if (title.startswith("Une ")): new_title = title.replace("Une ","",1)+", Une"
+        if (title.startswith("Le ")): new_title = title.replace("Le ","",1)+", Le"
+        if (title.startswith("La ")): new_title = title.replace("La ","",1)+", La"
+	# ENGLISH
         if (title.startswith("The ")): new_title = title.replace("The ","",1)+", The"
         if (title.startswith("A ")): new_title = title.replace("A ","",1)+", A"
         if (title.startswith("An ")): new_title = title.replace("An ","",1)+", An"
     else:
+	# GERMAN
+        if (title.endswith(", Der")): new_title = "Der "+"".join(title.rsplit(", Der",1))
+        if (title.endswith(", Die")): new_title = "Die "+"".join(title.rsplit(", Die",1))
+        if (title.endswith(", Das")): new_title = "Das "+"".join(title.rsplit(", Das",1))
+        if (title.endswith(", Ein")): new_title = "Ein "+"".join(title.rsplit(", Ein",1))
+        if (title.endswith(", Eine")): new_title = "Eine "+"".join(title.rsplit(", Eine",1))
+	# FRENCH
+        if (title.endswith(", Un")): new_title = "Un "+"".join(title.rsplit(", Un",1))
+        if (title.endswith(", Une")): new_title = "Une "+"".join(title.rsplit(", Une",1))
+        if (title.endswith(", Le")): new_title = "Le "+"".join(title.rsplit(", Le",1))
+        if (title.endswith(", La")): new_title = "La "+"".join(title.rsplit(", La",1))
+	# ENGLISH
         if (title.endswith(", The")): new_title = "The "+"".join(title.rsplit(", The",1))
         if (title.endswith(", A")): new_title = "A "+"".join(title.rsplit(", A",1))
         if (title.endswith(", An")): new_title = "An "+"".join(title.rsplit(", An",1))
