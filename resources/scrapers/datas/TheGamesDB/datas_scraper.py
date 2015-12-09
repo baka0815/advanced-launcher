@@ -7,9 +7,21 @@ import urllib, urllib2
 from xbmcaddon import Addon
 from operator import itemgetter, attrgetter
 
+def clean_filename(title):
+    title = re.sub('\[.*?\]', '', title)
+    title = re.sub('\(.*?\)', '', title)
+    title = re.sub('\{.*?\}', '', title)
+    title = title.replace('_',' ')
+    title = title.replace('-',' ')
+    title = title.replace(':',' ')
+    title = title.replace('.',' ')
+    title = title.rstrip()
+    return title
+
 # Return Game search list
 def _get_games_list(search,gamesys):
     platform = _system_conversion(gamesys)
+
     results = []
     display = []
     try:
@@ -32,7 +44,7 @@ def _get_games_list(search,gamesys):
                 game["order"] += 5
 
             # System matches?
-            if ((( platform == "Sega Genesis" or platform == "Sega Mega Drive") and ( game["gamesys"].lower() == "sega genesis" or game["gamesys"].lower() == "sega mega drive" )) or ( game["gamesys"].lower() == gamesys.lower() )):
+            if ((( platform == "Sega Genesis" or platform == "Sega Mega Drive") and ( game["gamesys"].lower() == "sega genesis" or game["gamesys"].lower() == "sega mega drive" )) or ( game["gamesys"].lower() == platform.lower() or game["gamesys"].lower() == gamesys.lower() )):
                 game["order"] += 2
 
             # Title contains search text?
