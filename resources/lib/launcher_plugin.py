@@ -821,7 +821,7 @@ class Main:
 
     def _scrap_rom_algo(self, launcher, rom, title):
         # Search game title
-        results,display = self._get_games_list(title,"")
+        results,display = self._get_games_list(title, self.launchers[launcher]["gamesys"])
         if display:
             # Display corresponding game list found
             dialog = xbmcgui.Dialog()
@@ -1415,7 +1415,7 @@ class Main:
 
     def _scrap_launcher_algo(self, launcherID, title):
         # Scrapping launcher name info
-        results,display = self._get_games_list(title,"")
+        results,display = self._get_games_list(title, self.launchers[launcherID]["gamesys"])
         if display:
             # Display corresponding game list found
             dialog = xbmcgui.Dialog()
@@ -2171,7 +2171,7 @@ class Main:
                                     selectgame = 0
                                 else:
                                     self._print_log(__language__( 30737 )) 
-                                    results,display = self._get_games_list(romdata["name"],gamesys)
+                                    results,display = self._get_games_list(romdata["name"], gamesys)
                                     if display:
                                         # Display corresponding game list found
                                         dialog = xbmcgui.Dialog()
