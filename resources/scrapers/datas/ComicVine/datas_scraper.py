@@ -8,7 +8,7 @@ import simplejson
 comicvine_api_key = "a1aaa516eaf233abf29c8aefaa46dc39cc0f0873"
 comicvine_api_url = "http://beta.comicvine.com/api"
 
-def _get_games_list(search):
+def _get_games_list(search,gamesys):
     results = []
     display = []
     try:

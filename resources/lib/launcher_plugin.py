@@ -821,24 +821,24 @@ class Main:
 
     def _scrap_rom_algo(self, launcher, rom, title):
         # Search game title
-            results,display = self._get_games_list(title)
-            if display:
-                # Display corresponding game list found
-                dialog = xbmcgui.Dialog()
-                # Game selection
-                selectgame = dialog.select(__language__( 30078 ) % ( self.settings[ "datas_scraper" ] ), display)
-                if (not selectgame == -1):
-                    if ( self.settings[ "ignore_title" ] ):
-                        self.launchers[launcher]["roms"][rom]["name"] = title_format(self,title)
-                    else:
-                        self.launchers[launcher]["roms"][rom]["name"] = title_format(self,results[selectgame]["title"])
-                    gamedata = self._get_game_data(results[selectgame]["id"])
-                    self.launchers[launcher]["roms"][rom]["genre"] = gamedata["genre"]
-                    self.launchers[launcher]["roms"][rom]["release"] = gamedata["release"]
-                    self.launchers[launcher]["roms"][rom]["studio"] = gamedata["studio"]
-                    self.launchers[launcher]["roms"][rom]["plot"] = gamedata["plot"]
-            else:
-                xbmc_notify(__language__( 30000 ), __language__( 30076 ),3000)
+        results,display = self._get_games_list(title,"")
+        if display:
+            # Display corresponding game list found
+            dialog = xbmcgui.Dialog()
+            # Game selection
+            selectgame = dialog.select(__language__( 30078 ) % ( self.settings[ "datas_scraper" ] ), display)
+            if (not selectgame == -1):
+                if ( self.settings[ "ignore_title" ] ):
+                    self.launchers[launcher]["roms"][rom]["name"] = title_format(self,title)
+                else:
+                    self.launchers[launcher]["roms"][rom]["name"] = title_format(self,results[selectgame]["title"])
+                gamedata = self._get_game_data(results[selectgame]["id"])
+                self.launchers[launcher]["roms"][rom]["genre"] = gamedata["genre"]
+                self.launchers[launcher]["roms"][rom]["release"] = gamedata["release"]
+                self.launchers[launcher]["roms"][rom]["studio"] = gamedata["studio"]
+                self.launchers[launcher]["roms"][rom]["plot"] = gamedata["plot"]
+        else:
+            xbmc_notify(__language__( 30000 ), __language__( 30076 ),3000)
     
     def _scrap_rom(self, launcher, rom):
         # Edition of the rom name
@@ -1415,7 +1415,7 @@ class Main:
 
     def _scrap_launcher_algo(self, launcherID, title):
         # Scrapping launcher name info
-        results,display = self._get_games_list(title)
+        results,display = self._get_games_list(title,"")
         if display:
             # Display corresponding game list found
             dialog = xbmcgui.Dialog()
@@ -2171,7 +2171,7 @@ class Main:
                                     selectgame = 0
                                 else:
                                     self._print_log(__language__( 30737 )) 
-                                    results,display = self._get_games_list(romdata["name"])
+                                    results,display = self._get_games_list(romdata["name"],gamesys)
                                     if display:
                                         # Display corresponding game list found
                                         dialog = xbmcgui.Dialog()

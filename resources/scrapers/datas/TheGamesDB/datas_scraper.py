@@ -8,7 +8,8 @@ from xbmcaddon import Addon
 from operator import itemgetter, attrgetter
 
 # Return Game search list
-def _get_games_list(search):
+def _get_games_list(search,gamesys):
+    platform = _system_conversion(gamesys)
     results = []
     display = []
     try:
@@ -23,12 +24,25 @@ def _get_games_list(search):
             game["title"] = item[1]
             game["gamesys"] = item[3]
             game["order"] = 1
-            if ( game["title"].lower() == search.lower() ):
-                game["order"] += 1
+
+            clean_title = clean_filename(game["title"])
+
+            # Name matches?
+            if ( game["title"].lower() == search.lower() or clean_title.lower() == search.lower() ):
+                game["order"] += 5
+
+            # System matches?
+            if ((( platform == "Sega Genesis" or platform == "Sega Mega Drive") and ( game["gamesys"].lower() == "sega genesis" or game["gamesys"].lower() == "sega mega drive" )) or ( game["gamesys"].lower() == gamesys.lower() )):
+                game["order"] += 2
+
+            # Title contains search text?
             if ( game["title"].lower().find(search.lower()) != -1 ):
                 game["order"] += 1
+
+            # TODO Check if all name parts match
             results.append(game)
             print game
+
         results.sort(key=lambda result: result["order"], reverse=True)
         for result in results:
             display.append(result["title"]+" / "+result["gamesys"])

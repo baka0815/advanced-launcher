@@ -5,7 +5,7 @@ import os
 import urllib
 
 # Return Game search list
-def _get_games_list(search):
+def _get_games_list(search,gamesys):
     results = []
     display = []
     try:

@@ -6,7 +6,7 @@ import urllib2
 from xbmcaddon import Addon
 
 # Return Game search list
-def _get_games_list(search):
+def _get_games_list(search,gamesys):
     display=[]
     results=[]
     try:
