@@ -2446,7 +2446,18 @@ class Main:
         else:
             ICON_OVERLAY = 7
         listitem.setProperty("fanart_image", fanart)
-        listitem.setInfo( "video", { "Title": name, "Label": os.path.basename(cmd), "Plot" : plot , "Studio" : studio , "Genre" : genre , "Premiered" : release  , display_date_format : release  , "Writer" : gamesys , "Trailer" : os.path.join(trailerpath), "Director" : os.path.join(custompath), "overlay": ICON_OVERLAY } )
+        listitem.setInfo( "video", {
+		"Title": name,
+		"Label": os.path.basename(cmd),
+		"Plot" : plot ,
+#		"Studio" : studio ,
+		"Genre" : genre ,
+#		"Premiered" : release  , display_date_format : release  ,
+#		"Writer" : gamesys ,
+#		"Trailer" : os.path.join(trailerpath),
+#		"Director" : os.path.join(custompath),
+		"overlay": ICON_OVERLAY
+	} )
         listitem.addContextMenuItems( commands )
         if ( finished != "true" ) or ( self.settings[ "hide_finished" ] == False) :
             xbmcplugin.addDirectoryItem( handle=int( self._handle ), url="%s?%s/%s"  % (self._path, category, key), listitem=listitem, isFolder=folder)
