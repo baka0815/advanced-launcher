@@ -2063,6 +2063,9 @@ class Main:
                 files.append(os.path.join(path, filename))
 
         for fullname in files:
+            if (pDialog.iscanceled() or xbmc.abortRequested):
+                break;
+
             f = os.path.basename(fullname)
             thumb = ""
             fanart = ""
