@@ -2078,6 +2078,9 @@ class Main:
             if ( self.settings[ "datas_method" ] == "3" ):
                 import_text = __language__( 30084 ) % (f.replace("."+f.split(".")[-1],""),self.settings[ "datas_scraper" ].encode('utf-8','ignore'))
             pDialog.update(filesCount * 100 / len(files), import_text)
+            if (pDialog.iscanceled() or xbmc.abortRequested):
+                break;
+
             self._print_log(__language__( 30725 ) % fullname)
             for ext in exts.split("|"):
                 romadded = False
@@ -2265,6 +2268,9 @@ class Main:
                             # If overwrite is activated or thumb file not exist
                             if ( self.settings[ "overwrite_thumbs"] ) or ( thumb == "" ):
                                 pDialog.update(filesCount * 100 / len(files), __language__( 30065 ) % (f.replace("."+f.split(".")[-1],""),self.settings[ "thumbs_scraper" ].encode('utf-8','ignore')))
+                                if (pDialog.iscanceled() or xbmc.abortRequested):
+                                    break;
+
                                 img_url=""
                                 if (thumb_path == fanart_path):
                                     if (thumb_path == path):
@@ -2294,6 +2300,9 @@ class Main:
                                             img_url = self._get_thumbnail(self.image_url)
                                             ret = pDialog.create(__language__( 30000 ), __language__( 30014 ) % (path))
                                             pDialog.update(filesCount * 100 / len(files), __language__( 30061 ) % (f.replace("."+f.split(".")[-1],""),self.settings[ "datas_scraper" ].encode('utf-8','ignore')))
+                                    if (pDialog.iscanceled() or xbmc.abortRequested):
+                                        break;
+
                                     cached_thumb = Thumbnails().get_cached_covers_thumb( thumb ).replace("tbn" , "jpg")
                                     if ( img_url !='' ):
                                         try:
@@ -2313,6 +2322,9 @@ class Main:
                             else:
                                 pDialog.update(filesCount * 100 / len(files), __language__( 30065 ) % (f.replace("."+f.split(".")[-1],""),__language__( 30172 )))
                                 romdata["thumb"] = thumb
+
+                        if (pDialog.iscanceled() or xbmc.abortRequested):
+                            break;
 
                         if ( self.settings[ "fanarts_method" ] == "2" ):
                             # If overwrite activated or fanart file not exist
@@ -2368,6 +2380,9 @@ class Main:
                             else:
                                 pDialog.update(filesCount * 100 / len(files), __language__( 30071 ) % (f.replace("."+f.split(".")[-1],""),__language__( 30172 )))
                                 romdata["fanart"] = fanart
+
+                        if (pDialog.iscanceled() or xbmc.abortRequested):
+                            break;
 
                         # add rom to the roms list (using name as index)
                         romid = _get_SID()
