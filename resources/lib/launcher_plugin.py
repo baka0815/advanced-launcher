@@ -2465,17 +2465,18 @@ class Main:
             ICON_OVERLAY = 7
         listitem.setProperty("fanart_image", fanart)
         listitem.setInfo( "video", {
-		"Title": name,
-		"Label": os.path.basename(cmd),
-		"Plot" : plot ,
-#		"Studio" : studio ,
-		"Genre" : genre ,
-#		"Premiered" : release  , display_date_format : release  ,
-#		"Writer" : gamesys ,
-#		"Trailer" : os.path.join(trailerpath),
-#		"Director" : os.path.join(custompath),
-		"overlay": ICON_OVERLAY
-	} )
+          "Title": name,
+          "Label": os.path.basename(cmd),
+          "Plot": plot,
+#          "Studio": studio,
+          "Genre": genre,
+#          "Premiered": release,
+#          display_date_format: release,
+#          "Writer": gamesys,
+#          "Trailer": os.path.join(trailerpath),
+#          "Director": os.path.join(custompath),
+          "overlay": ICON_OVERLAY
+        } )
         listitem.addContextMenuItems( commands )
         if ( finished != "true" ) or ( self.settings[ "hide_finished" ] == False) :
             xbmcplugin.addDirectoryItem( handle=int( self._handle ), url="%s?%s/%s"  % (self._path, category, key), listitem=listitem, isFolder=folder)
@@ -2500,20 +2501,20 @@ class Main:
         listitem.setProperty("fanart_image", romfanart)
 
         listitem.setInfo( "video", {
-		"Genre": romgenre,
-#		display_date_format: romrelease,
-		"Title": name,
-#		"originaltitle" : name,
-#               "sorttitle" : name,
-		"Label": os.path.basename(cmd),
-		"Plot" : romplot,
-#		"Studio" : romstudio,
-#		"Premiered" : romrelease,
-#		"Writer" : romgamesys,
-#		"Trailer" : os.path.join(romtrailer),
-#               "Director" : os.path.join(romcustom),
-		"overlay": ICON_OVERLAY
-	} )
+          "Genre": romgenre,
+#          display_date_format: romrelease,
+          "Title": name,
+#          "originaltitle": name,
+#          "sorttitle": name,
+          "Label": os.path.basename(cmd),
+          "Plot": romplot,
+#          "Studio": romstudio,
+#          "Premiered": romrelease,
+#          "Writer": romgamesys,
+#          "Trailer": os.path.join(romtrailer),
+#          "Director": os.path.join(romcustom),
+          "overlay": ICON_OVERLAY
+        })
 
         commands = []
         commands.append((__language__( 30512 ), "XBMC.RunPlugin(%s?%s/%s/%s)" % (self._path, self.launchers[launcherID]["category"], launcherID, SEARCH_COMMAND) , ))
