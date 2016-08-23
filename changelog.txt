@@ -1,3 +1,6 @@
+[B]2.6.1[/B]
+. Add new logo.
+
 [B]2.6.0[/B]
 . Remove AllGame data scrapper.
 
