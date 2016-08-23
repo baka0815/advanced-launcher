@@ -19,7 +19,7 @@ Features:
 
 Included scrapers:
 
-. Games: AllGame, GameFAQs, MobyGames, arcadeHITS and TheGamesDB databases.
+. Games: GameFAQs, MobyGames, arcadeHITS and TheGamesDB databases.
 . Comics: ComicVine database.
 . Images: Google Images and HTBackdrops search engine.
 
